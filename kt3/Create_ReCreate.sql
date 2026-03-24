@@ -37,6 +37,37 @@ BEGIN
     END IF;
 END@@
 
+DROP PROCEDURE IF EXISTS CreateUsers@@
+
+CREATE PROCEDURE CreateUsers()
+BEGIN
+    CREATE USER 'admin'@'localhost' IDENTIFIED BY 'Pa$$w0rd';
+    GRANT ALL PRIVILEGES ON kt3.* TO 'admin'@'localhost';
+
+    CREATE USER 'sales_manager'@'localhost' IDENTIFIED BY 'Pa$$w0rd';
+    GRANT ALL PRIVILEGES ON kt3.Production TO 'sales_manager'@'localhost';
+    GRANT ALL PRIVILEGES ON kt3.Orders TO 'sales_manager'@'localhost';
+    GRANT SELECT ON kt3.Contracts TO 'sales_manager'@'localhost';
+    GRANT SELECT ON kt3.Bids TO 'sales_manager'@'localhost';
+    GRANT SELECT ON kt3.Production_Bid TO 'sales_manager'@'localhost';
+    GRANT SELECT ON kt3.OrderStatus TO 'sales_manager'@'localhost';
+    GRANT SELECT ON kt3.Clients TO 'sales_manager'@'localhost';
+    GRANT SELECT ON kt3.Users TO 'sales_manager'@'localhost';
+    GRANT SELECT ON kt3.ProductKind TO 'sales_manager'@'localhost';
+
+    CREATE USER 'supply_manager'@'localhost' IDENTIFIED BY 'Pa$$w0rd';
+    GRANT ALL PRIVILEGES ON kt3.Production TO 'supply_manager'@'localhost';
+    GRANT ALL PRIVILEGES ON kt3.Orders TO 'supply_manager'@'localhost';
+    GRANT ALL PRIVILEGES ON kt3.Contracts TO 'supply_manager'@'localhost';
+    GRANT ALL PRIVILEGES ON kt3.Bids TO 'supply_manager'@'localhost';
+    GRANT ALL PRIVILEGES ON kt3.Production_Bid TO 'supply_manager'@'localhost';
+    GRANT ALL PRIVILEGES ON kt3.Suppliers TO 'supply_manager'@'localhost';
+    GRANT ALL PRIVILEGES ON kt3.OrderStatus TO 'supply_manager'@'localhost';
+    GRANT ALL PRIVILEGES ON kt3.ProductKind TO 'supply_manager'@'localhost';
+    GRANT SELECT ON kt3.Clients TO 'supply_manager'@'localhost';
+    GRANT SELECT ON kt3.Users TO 'supply_manager'@'localhost';
+END@@
+
 DROP PROCEDURE IF EXISTS CreateTables@@
 
 CREATE PROCEDURE CreateTables()
